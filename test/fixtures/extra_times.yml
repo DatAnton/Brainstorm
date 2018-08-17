@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time: MyString
+  integer: MyString
+  challenge: MyString
+  references: MyString
+
+two:
+  time: MyString
+  integer: MyString
+  challenge: MyString
+  references: MyString

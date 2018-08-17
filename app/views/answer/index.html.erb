@@ -1,0 +1,5 @@
+<h1>Sort answers</h1>
+
+<% @challenge.answers.each do |answer| %>
+  <answer v-bind:answer="<%= answer.to_json.to_s %>"></answer>
+<% end %>

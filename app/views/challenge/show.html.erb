@@ -1,0 +1,18 @@
+<h1>SHOW!</h1>
+<%= @challenge.inspect %>
+
+<p><strong><%= @challenge.diff %></strong></p>
+<p><strong><%= @challenge.expired %></strong></p>
+<p><strong><%= @challenge.session %></strong></p>
+
+<% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "alert alert-#{key}" %>
+<% end %>
+
+<% if @challenge %>
+  <div>
+    <%= form_for(@answer, url: challenge_answer_index_path(:challenge_id => @challenge.id)) do |f| %>
+        <%=  f.text_field :text %>
+    <% end %>
+  </div>
+<% end %>

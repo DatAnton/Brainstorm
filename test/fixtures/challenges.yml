@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  problem: MyString
+  time: 1
+  completed: false
+  type: 
+
+two:
+  problem: MyString
+  time: 1
+  completed: false
+  type: 

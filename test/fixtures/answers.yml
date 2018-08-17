@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  text: MyString
+  challenge_id: 1
+  impact: 1
+  cost: 1
+  selected: false
+
+two:
+  text: MyString
+  challenge_id: 1
+  impact: 1
+  cost: 1
+  selected: false

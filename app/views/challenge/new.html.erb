@@ -1,0 +1,23 @@
+<h1>New Challenge!</h1>
+<%= @challenge.errors.inspect %>
+
+<% if @challenge.mode? %>
+  <div>
+    <%= form_for(@challenge, url: challenge_index_path) do |f| %>
+        <%=  f.hidden_field :mode %>
+
+        <%=  f.label :Problem %>
+        <%=  f.text_field :problem %>
+
+        <%=  f.label :Time %>
+        <%=  f.range_field :time %>
+
+        <%= f.submit ">>>" %>
+    <% end %>
+  </div>
+<% else %>
+  <ul>
+    <li><%= link_to "Quick Brainstorm", new_challenge_path(:mode => 'quick') %></li>
+    <li><%= link_to "Complete Brainstorm", new_challenge_path(:mode => 'complete') %></li>
+  </ul>
+<% end %>
