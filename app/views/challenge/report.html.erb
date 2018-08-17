@@ -1,0 +1,27 @@
+<h1>Report!</h1>
+<p>
+  <%= link_to "New Idea?", root_path %>
+</p>
+<%= form_tag(challenge_report_path(@challenge), method: 'post') do %>
+  <%= email_field(:email, '', { :placeholder => 'Your email...' }) %>
+  <%= text_field(:subject, '', { :placeholder => 'Email subject...' }) %>
+  <button type="submit" class="btn btn-default" name="button">Send</button>
+<% end %>
+
+<h2>Challenge:</h2><br>
+<p><%= @challenge.problem %></p>
+<p><strong>Timing: </strong><%= (@challenge.total_time / 60).to_i %>:<%= (@challenge.total_time % 60).to_i %>m</p>
+<p><strong>Number of outputs: </strong><%= @challenge.answers.count %></p>
+<p><strong>Outputs per minute: </strong><%= '%.2f' % (@challenge.answers.count.to_d / (@challenge.time.to_d / 60)).to_d %></p>
+<br><br>
+<strong>Outputs: </strong>
+<% @challenge.answers.each do |answer| %>
+  <p><%= answer.text %></p>
+<% end %>
+<br>
+<% if @better %>
+<div class="">
+  <p><strong>Best outputs in terms of impact/cost: </strong></p>
+  <p><%= @better.text %></p>
+</div>
+<% end %>

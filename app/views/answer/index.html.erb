@@ -3,3 +3,6 @@
 <% @challenge.answers.each do |answer| %>
   <answer :input="<%= answer.to_json %>"></answer>
 <% end %>
+<br>
+<br>
+<%= link_to ">>>", challenge_prepare_path(@challenge) %>

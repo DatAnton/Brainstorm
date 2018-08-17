@@ -1,4 +1,6 @@
 Rails.application.configure do
+  host = 'https://brainstorm-jolly.herokuapp.com/'
+  
   # Verifies that versions and hashed value of the package contents in the project's package.json
   config.webpacker.check_yarn_integrity = false
   # Settings specified here will take precedence over those in config/application.rb.

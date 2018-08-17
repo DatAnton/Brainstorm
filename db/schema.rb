@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 2018_08_16_200424) do
     t.integer "time"
     t.boolean "completed"
     t.string "mode"
+    t.boolean "impact_flag"
+    t.boolean "cost_flag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

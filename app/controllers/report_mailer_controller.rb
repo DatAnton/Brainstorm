@@ -1,0 +1,2 @@
+class ReportMailerController < ApplicationController
+end

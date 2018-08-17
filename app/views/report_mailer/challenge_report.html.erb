@@ -1,0 +1,17 @@
+<h2>Challenge:</h2><br>
+<p><%= @challenge.problem %></p>
+<p><strong>Timing: </strong><%= pluralize((@challenge.total_time / 60).to_i, 'minute') %></p>
+<p><strong>Number of outputs: </strong><%= @challenge.answers.count %></p>
+<p><strong>Outputs per minute: </strong><%= '%.2f' % (@challenge.answers.count.to_d / (@challenge.time.to_d / 60)).to_d %></p>
+<br><br>
+<strong>Outputs: </strong>
+<% @challenge.answers.each do |answer| %>
+  <p><%= answer.text %></p>
+<% end %>
+<br>
+<% if @better %>
+<div class="">
+  <p><strong>Best outputs in terms of impact/cost: </strong></p>
+  <p><%= @better.text %></p>
+</div>
+<% end %>

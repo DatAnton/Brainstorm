@@ -28,6 +28,11 @@ class Challenge < ApplicationRecord
     time + self.diff
   end
 
+  def total_time
+    time = self.extra_times.map{|y| y.time}.reduce(:+) || 0
+    time + self.time
+  end
+
   def expired
     self.session <= 0
   end

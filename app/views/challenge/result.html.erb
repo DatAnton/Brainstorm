@@ -2,3 +2,14 @@
 <hr>
 <p><%= (@answers.count) %> - Total answers</p>
 <p><%= '%.2f' % (@answers.count.to_d / (@challenge.time.to_d / 60)).to_d %> - Answers per minute</p>
+
+<%= link_to "Add 1 minute", challenge_extra_path(@challenge, :time => 60), :method=> :put %>
+<br>
+<%= link_to "Add 3 minute", challenge_extra_path(@challenge, :time => 180), :method=> :put %>
+<br>
+<%= link_to "Add 5 minute", challenge_extra_path(@challenge, :time => 300), :method=> :put %>
+<br>
+<%= link_to "Add 10 minute", challenge_extra_path(@challenge, :time => 600), :method=> :put %>
+<br>
+<br>
+<%= link_to ">>>", challenge_answer_index_path(@challenge) %>
