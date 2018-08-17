@@ -1,18 +1,18 @@
-<h1>SHOW!</h1>
-<%= @challenge.inspect %>
+<h1>Brainstorm</h1>
+<div>
+  <% flash.each do |key, value| %>
+    <%= content_tag :div, value, class: "alert alert-#{key}" %>
+  <% end %>
 
-<p><strong><%= @challenge.diff %></strong></p>
-<p><strong><%= @challenge.expired %></strong></p>
-<p><strong><%= @challenge.session %></strong></p>
+  <timer
+    :off="<%= @challenge.expired %>"
+    :time="<%= @challenge.session %>"
+    redirect_to="<%= challenge_result_path @challenge %>"
+  ></timer>
 
-<% flash.each do |key, value| %>
-  <%= content_tag :div, value, class: "alert alert-#{key}" %>
-<% end %>
-
-<% if @challenge %>
   <div>
     <%= form_for(@answer, url: challenge_answer_index_path(:challenge_id => @challenge.id)) do |f| %>
         <%=  f.text_field :text %>
     <% end %>
   </div>
-<% end %>
+</div>

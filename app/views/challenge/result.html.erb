@@ -1,5 +1,4 @@
-<%= @challenge.inspect %>
+<h1>Results</h1>
 <hr>
 <p><%= (@answers.count) %> - Total answers</p>
-<p><%= (@challenge.time.to_d / 60).to_d %> - Time in minutes</p>
-<p><%= (@answers.count.to_d / (@challenge.time.to_d / 60)).to_d %> - Answes per second</p>
+<p><%= '%.2f' % (@answers.count.to_d / (@challenge.time.to_d / 60)).to_d %> - Answers per minute</p>

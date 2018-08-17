@@ -1,5 +1,5 @@
-<h1>Sort answers</h1>
+<h1>Select up to 5 of the most appropriate ideas</h1>
 
 <% @challenge.answers.each do |answer| %>
-  <answer v-bind:answer="<%= answer.to_json.to_s %>"></answer>
+  <answer :input="<%= answer.to_json %>"></answer>
 <% end %>
