@@ -12,9 +12,34 @@
 
 ActiveRecord::Schema.define(version: 2018_08_16_200424) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "btree_gin"
+  enable_extension "btree_gist"
+  enable_extension "citext"
+  enable_extension "cube"
+  enable_extension "dblink"
+  enable_extension "dict_int"
+  enable_extension "dict_xsyn"
+  enable_extension "earthdistance"
+  enable_extension "fuzzystrmatch"
+  enable_extension "hstore"
+  enable_extension "intarray"
+  enable_extension "ltree"
+  enable_extension "pg_stat_statements"
+  enable_extension "pg_trgm"
+  enable_extension "pgcrypto"
+  enable_extension "pgrowlocks"
+  enable_extension "pgstattuple"
+  enable_extension "plpgsql"
+  enable_extension "plv8"
+  enable_extension "tablefunc"
+  enable_extension "unaccent"
+  enable_extension "uuid-ossp"
+  enable_extension "xml2"
+
   create_table "answers", force: :cascade do |t|
     t.string "text"
-    t.integer "challenge_id"
+    t.bigint "challenge_id"
     t.integer "impact"
     t.integer "cost"
     t.boolean "selected"
@@ -34,10 +59,12 @@ ActiveRecord::Schema.define(version: 2018_08_16_200424) do
 
   create_table "extra_times", force: :cascade do |t|
     t.integer "time"
-    t.integer "challenge_id"
+    t.bigint "challenge_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["challenge_id"], name: "index_extra_times_on_challenge_id"
   end
 
+  add_foreign_key "answers", "challenges"
+  add_foreign_key "extra_times", "challenges"
 end
