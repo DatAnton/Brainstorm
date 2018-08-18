@@ -12,7 +12,7 @@
 <p><%= @challenge.problem %></p>
 <p><strong>Timing: </strong><%= (@challenge.total_time / 60).to_i %>:<%= (@challenge.total_time % 60).to_i %>m</p>
 <p><strong>Number of outputs: </strong><%= @challenge.answers.count %></p>
-<p><strong>Outputs per minute: </strong><%= '%.2f' % (@challenge.answers.count.to_d / (@challenge.time.to_d / 60)).to_d %></p>
+<p><strong>Outputs per minute: </strong><%= '%.2f' % (@challenge.answers.count.to_d / (@challenge.total_time.to_d / 60)).to_d %></p>
 <br><br>
 <strong>Outputs: </strong>
 <% @challenge.answers.each do |answer| %>

@@ -1,7 +1,7 @@
 <h1>Results</h1>
 <hr>
 <p><%= (@answers.count) %> - Total answers</p>
-<p><%= '%.2f' % (@answers.count.to_d / (@challenge.time.to_d / 60)).to_d %> - Answers per minute</p>
+<p><%= '%.2f' % (@answers.count.to_d / (@challenge.total_time.to_d / 60)).to_d %> - Answers per minute</p>
 
 <%= link_to "Add 1 minute", challenge_extra_path(@challenge, :time => 60), :method=> :put %>
 <br>
