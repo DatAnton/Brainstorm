@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: "challenge#new"
   resources :challenge, only: [:new, :create, :show] do
     get '/extra', to: 'challenge#extra'
+    get '/intent', to: 'challenge#intent'
     get '/report', to: 'challenge#report'
     get '/matrix', to: 'challenge#matrix'
     get '/result', to: 'challenge#result'

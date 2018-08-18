@@ -34,6 +34,17 @@ class ChallengeController < ApplicationController
     @better = Answer.where(["challenge_id = ? and selected = ?", params[:challenge_id], true]).order(:impact => :desc, :cost => :asc).first
   end
 
+  def intent
+    @property = params[:property] || 'impact'
+    @challenge = Challenge.find_by_id params[:challenge_id]
+
+    if @challenge.impact_flag and @challenge.cost_flag
+      return redirect_to challenge_matrix_url :challenge_id => @challenge
+    end
+
+    @url = params[:redirect_to] || challenge_prepare_path(@challenge)
+  end
+
   def matrix
     @challenge = Challenge.find_by id: params[:challenge_id]
     @answers = Answer.where(["selected = ? and challenge_id = ?", true, @challenge.id])
@@ -66,6 +77,10 @@ class ChallengeController < ApplicationController
 
     if @challenge.impact_flag and @challenge.cost_flag
       return redirect_to challenge_matrix_url :challenge_id => @challenge
+    elsif @property == 'impact' and @challenge.impact_flag
+      return redirect_to challenge_intent_url :challenge_id => @challenge, :property => 'cost'
+    elsif @property == 'cost' and @challenge.cost_flag
+      return redirect_to challenge_intent_url :challenge_id => @challenge, :property => 'impact'
     end
 
     if params[:answer_id]
@@ -74,30 +89,69 @@ class ChallengeController < ApplicationController
       @left = Answer.where(["challenge_id = ? and selected = ?", @challenge, true]).order(:id).first
     end
 
-    if !@left
-      puts "END!"
+    if @left
+      @right = Answer.where(["id > ? and challenge_id = ? and selected = ?", @left.id, @challenge, true]).order(:id).first
+      if @right
+        return redirect_to challenge_answer_compare_url :challenge_id => @challenge, :property => @property, :answer_id => @left, :right_id => @right
+      else
+        return redirect_to challenge_prepare_path(:challenge_id => @challenge, :property => @property, :answer_id => @left.id)
+      end
+    else
+      if @property == 'impact'
+        @challenge.update_attributes :impact_flag => true
+      elsif @property == 'cost'
+        @challenge.update_attributes :cost_flag => true
+      end
+      @next_prop = @property == 'cost' ? 'impact' : 'cost'
+      @url = challenge_prepare_path :challenge_id => @challenge, :property => @next_prop
+      return redirect_to challenge_intent_url :challenge_id => @challenge, :redirect_to => @url, :property => @next_prop
+    end
+
+  end
+
+  def prepare_old
+    @property = params[:property] || 'impact'
+    @challenge = Challenge.find_by_id params[:challenge_id]
+
+    if @challenge.impact_flag and @challenge.cost_flag
+      return redirect_to challenge_matrix_url :challenge_id => @challenge
+    end
+
+    if params[:answer_id]
+      @left = Answer.where(["id > ? and challenge_id = ? and selected = ?", params[:answer_id], @challenge, true]).order(:id).first
+    else
+      @left = Answer.where(["challenge_id = ? and selected = ?", @challenge, true]).order(:id).first
+    end
+
+    unless @left
+      puts "end of left"
       if @property == 'impact'
         @challenge.impact_flag = true
         if @challenge.save
           puts "Saved!"
         end
 
-        return redirect_to challenge_prepare_url(:challenge_id => @challenge, :property => 'cost')
-      else
+        @url = challenge_prepare_path(:challenge_id => @challenge, :property => 'cost')
+        return redirect_to challenge_intent_url :challenge_id => @challenge, :property => 'cost', :redirect_to => @url
+      elsif @property == 'cost'
         @challenge.cost_flag = true
         if @challenge.save
           puts "Saved!"
         end
         return redirect_to challenge_matrix_url :challenge_id => @challenge
+      else
+        return redirect_to challenge_prepare_path :challenge_id => @challenge, :property => @property, :challenge_id => params[:challenge_id]
       end
     end
 
-    @right = Answer.where(["id != ? and challenge_id = ? and selected = ?", @left.id, @challenge, true]).order(:id).first
+    # != to >
+    @right = Answer.where(["id > ? and challenge_id = ? and selected = ?", @left.id, @challenge, true]).order(:id).first
 
     if @right
-      redirect_to challenge_answer_compare_url :challenge_id => @challenge, :property => @property, :answer_id => @left, :right_id => @right
+      return redirect_to challenge_answer_compare_url :challenge_id => @challenge, :property => @property, :answer_id => @left, :right_id => @right
     else
-      redirect_to challenge_matrix_url :challenge_id => @challenge
+      @url = challenge_prepare_path(:challenge_id => @challenge, :property => 'cost')
+      return redirect_to challenge_intent_url :challenge_id => @challenge, :property => 'cost', :redirect_to => @url
       # if @property == 'impact'
       #   @challenge.impact_flag = true
       #   redirect_to challenge_prepare_url :challenge_id => @challenge, :property => 'cost'

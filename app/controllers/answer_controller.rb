@@ -51,11 +51,13 @@ class AnswerController < ApplicationController
       puts "Saved!"
     end
 
-    @next = Answer.where(["id > ? and id != ? and challenge_id = ? and selected = ?", @right.id, @left.id, @challenge, true]).order(:id).first
+    # != to > (second predicate)
+    @next = Answer.where(["id > ? and id > ? and challenge_id = ? and selected = ?", @right.id, @left.id, @challenge, true]).order(:id).first
 
     if @next
       redirect_to challenge_answer_compare_url :challenge_id => @challenge, :answer_id => @left, :right_id => @next, :property => @property
     else
+      puts "end of right";
       redirect_to challenge_prepare_url :challenge_id => @challenge, :answer_id => @left, :property => @property
     end
   end
