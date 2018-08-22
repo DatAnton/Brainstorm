@@ -1,8 +1,13 @@
-<h1>Select up to 5 of the most appropriate ideas</h1>
-
-<% @challenge.answers.each do |answer| %>
-  <answer :input="<%= answer.to_json %>"></answer>
-<% end %>
-<br>
-<br>
-<%= link_to ">>>", challenge_intent_path(@challenge) %>
+<div>
+  <h1 class="text-center">Select up to 5 of the most appropriate ideas</h1>
+<hr>
+</div>
+<div>
+  <% @challenge.answers.each do |answer| %>
+    <answer :input="<%= answer.to_json %>"></answer>
+  <% end %>
+  <hr>
+  <div class="text-right">
+    <%= link_to ">>>", challenge_intent_path(@challenge), :class => "btn btn-primary"%>
+  </div>
+</div>

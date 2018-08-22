@@ -23,6 +23,14 @@ class Challenge < ApplicationRecord
     end
   end
 
+  def total_answers
+
+  end
+
+  def answers_per_minute
+    
+  end
+
   def session
     time = self.extra_times.select{|x| x.expired != true }.map{|y| y.diff}.reduce(:+) || 0
     time + self.diff

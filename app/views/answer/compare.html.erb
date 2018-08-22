@@ -11,9 +11,9 @@
         <%= form_tag(challenge_answer_swap_path(@challenge, @left, @right), method: 'post') do %>
           <%= hidden_field_tag(:selected, @left.id) %>
           <%= hidden_field_tag(:property, @property) %>
-          <button type="submit" class="btn btn-default" name="button">Select</button>
+          <button type="submit" class ="btn btn-primary" name="button">Select</button>
         <% end %>
-        <!-- <button type="button" class="btn btn-default" name="button">Select</button> -->
+        
       </td>
       <td class="text-center">
         <span><%= @right.text %></span>
@@ -21,7 +21,7 @@
         <%= form_tag(challenge_answer_swap_path(@challenge, @left, @right, :property => @property), method: 'post') do %>
           <%= hidden_field_tag(:selected, @right.id) %>
           <%= hidden_field_tag(:property, @property) %>
-          <button type="submit" class="btn btn-default" name="button">Select</button>
+          <button type="submit" class ="btn btn-primary" name="button">Select</button>
         <% end %>
       </td>
     </tr>

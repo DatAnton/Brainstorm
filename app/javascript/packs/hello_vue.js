@@ -58,6 +58,7 @@
 import Vue from 'vue/dist/vue.esm'
 import App from './components/app.vue'
 import Timer from './components/timer.vue'
+import Chart from './components/chart.vue'
 import Answer from './components/checkbox.vue'
 
 // Vue.use(TurbolinksAdapter)
@@ -68,6 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     data: {
       message: "Can you say hello?"
     },
-    components: { App, Answer, Timer }
+    components: { App, Answer, Timer, Chart }
   })
 })

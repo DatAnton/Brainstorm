@@ -3,4 +3,6 @@
   property: <strong><%= @property %></strong>
 </p>
 <p>Link: <%= @url %></p>
-<p><%= link_to ">>>", @url %></p>
+<div class="text-right">
+  <p><%= link_to ">>>", @url, :class => "btn btn-primary"%></p>
+</div>

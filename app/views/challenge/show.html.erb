@@ -1,24 +1,29 @@
-<h1>Brainstorm</h1>
-<h2><%= @challenge.problem %></h2>
+<h1 class="text-center">Brainstorm</h1>
+<hr>
+<div class="list-input">
+<h2 class="text-center"><%= @challenge.problem %></h2>
 <div>
   <% flash.each do |key, value| %>
     <%= content_tag :div, value, class: "alert alert-#{key}" %>
   <% end %>
 
-  <timer
+  <timer class="text-center"
     :off="<%= @challenge.expired %>"
     :time="<%= @challenge.session %>"
     redirect_to="<%= challenge_result_path @challenge %>"
   ></timer>
 
-  <div>
     <%= form_for(@answer, url: challenge_answer_index_path(:challenge_id => @challenge.id)) do |f| %>
-        <%=  f.text_field :text, { :autofocus => true } %>
+    <div class="form-group">
+        <%= f.text_field :text, { :autofocus => true, :class => "form-control" } %>
+    </div>
     <% end %>
   </div>
 </div>
 
 <br>
 <br>
-
-<%= link_to ">>>", challenge_result_path(@challenge) %>
+<hr>
+<div class="text-right">
+  <%= link_to ">>>", challenge_result_path(@challenge), :class => "btn btn-primary" %>
+</div>

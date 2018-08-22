@@ -1,22 +1,45 @@
-<h1>New Challenge</h1>
-
+<h1 class="text-center">New Challenge</h1>
+<hr>
 <% if @challenge.mode? %>
   <div>
     <%= form_for(@challenge, url: challenge_index_path) do |f| %>
         <%=  f.hidden_field :mode %>
+        <div>
+          <div class="list-input">
+            <h2>1. Write down your problem to solve</h2>
+            <div class="form-group">
+              <%=  f.text_field :problem, :class => "form-control" %>
+            </div>
+          </div>
 
-        <%=  f.label :Problem %>
-        <%=  f.text_field :problem %>
+          <br>
 
-        <%=  f.label :Time %>
-        <%=  f.range_field :time %>
-
-        <%= f.submit ">>>" %>
+          <div class="list-input">
+            <h2>2. Choose the length of your brainstorming</h2>
+            <div class="form-group">
+              <%=  f.range_field :time, { :value => 0, :min => 0, :max => 600, :step => 60, :list => 'tickmarks', :class => "form-control" } %>
+              <datalist id="tickmarks">
+                <% (0..600).step(60) do |minute| %>
+                  <option value="<%= minute %>" label="<%= minute / 60 %>"><%= minute / 60 %> min.</option>
+                <% end %>
+              </datalist>
+            </div>
+          </div>
+          <hr>
+          <div class="text-right">
+            <%= f.submit ">>>", :class => "btn btn-primary" %>
+          </div>
+        </div>
     <% end %>
   </div>
 <% else %>
-  <ul>
-    <li><%= link_to "Quick Brainstorm", new_challenge_path(:mode => 'quick') %></li>
-    <li><%= link_to "Complete Brainstorm", new_challenge_path(:mode => 'complete') %></li>
-  </ul>
+    <div class="row">
+      <div class="col-sm text-center">
+        <%= link_to "Quick Brainstorm", new_challenge_path(:mode => 'quick'), { :class => 'btn btn-lg btn-primary' } %>
+      </div>
+      <div class="col-sm text-center">
+
+        <%= link_to "Complete Brainstorm", new_challenge_path(:mode => 'complete'), { :class => 'btn btn-lg btn-primary' } %>
+      </div>
+    </div>
 <% end %>

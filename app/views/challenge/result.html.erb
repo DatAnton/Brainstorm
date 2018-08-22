@@ -1,15 +1,18 @@
-<h1>Results</h1>
+<h1 class="text-center" style="font-size:50px">Results</h1>
 <hr>
-<p><%= (@answers.count) %> - Total answers</p>
-<p><%= '%.2f' % (@answers.count.to_d / (@challenge.total_time.to_d / 60)).to_d %> - Answers per minute</p>
-
-<%= link_to "Add 1 minute", challenge_extra_path(@challenge, :time => 60), :method=> :put %>
+<p class="text-center" style="font-size:40px">Congratulations! You found <span class="text-primary"><%= pluralize(@answers.count, 'output') %></span> to the challenge in <%= pluralize(@challenge.total_time.to_i / 60, 'minute') %>.</p>
+<p class="text-center" style="font-size:35px">That's <span class="p-3 mb-2 bg-primary text-white"><%= pluralize(('%.2f' % (@answers.count.to_d / (@challenge.total_time.to_d / 60)).to_d), 'output') %></span> every minute.</p>
 <br>
-<%= link_to "Add 3 minute", challenge_extra_path(@challenge, :time => 180), :method=> :put %>
+<hr>
 <br>
-<%= link_to "Add 5 minute", challenge_extra_path(@challenge, :time => 300), :method=> :put %>
-<br>
-<%= link_to "Add 10 minute", challenge_extra_path(@challenge, :time => 600), :method=> :put %>
-<br>
-<br>
-<%= link_to ">>>", challenge_answer_index_path(@challenge) %>
+<div class="text-center">
+  <%= link_to "Add 1 minute", challenge_extra_path(@challenge, :time => 60), :class => "btn btn-light", :method=> :put %>&nbsp;&nbsp;
+  <%= link_to "Add 3 minute", challenge_extra_path(@challenge, :time => 180), :class => "btn btn-light", :method=> :put %>&nbsp;&nbsp;
+  <%= link_to "Add 5 minute", challenge_extra_path(@challenge, :time => 300), :class => "btn btn-light", :method=> :put %>&nbsp;&nbsp;
+  <%= link_to "Add 10 minute", challenge_extra_path(@challenge, :time => 600), :class => "btn btn-light", :method=> :put %>
+  <br>
+  <br>
+</div>
+<div class="text-right">
+  <%= link_to ">>>", challenge_answer_index_path(@challenge), :class => "btn btn-primary" %>
+</div>

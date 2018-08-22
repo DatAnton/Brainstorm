@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+.list-input {
+  .form-group {
+    width: 70%;
+    padding: 20px;
+    margin: 0 auto;
+  }
+}
+
+ .chart-container {
+   width: 960px;
+   margin-left: 40px;
+   margin-right: 40px;
+   margin-bottom: 40px;
+ }
