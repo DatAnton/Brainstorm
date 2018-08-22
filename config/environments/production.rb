@@ -7,7 +7,7 @@ Rails.application.configure do
 
 config.report_mailer.raise_delivery_errors = true
 config.report_mailer.delivery_method = :smtp
-host = 'brainstorm-jolly.herokuapp.com'
+host = '<brainstorm-jolly>.herokuapp.com'
 config.report_mailer.default_url_options = { host: host }
 ReportMailer::Base.smtp_settings = {
    :address        => 'smtp.sendgrid.net',
