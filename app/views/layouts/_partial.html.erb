@@ -4,23 +4,57 @@ navigation = [
   { :params => { "controller" => 'challenge', "action" => 'new', "initial" => true, "quick" => true,  "complete" => true }, :title => 'Intro' },
   { :params => { "controller" => 'challenge', "action" => 'show', "quick" => true, "complete" => true }, :title => 'Challenge' },
   { :params => { "controller" => 'challenge', "action" => 'result', "quick" => true, "complete" => true  }, :title => 'Results' },
-  { :params => { "controller" => 'answer', "action" => 'index', "complete" => true }, :title => 'Sorting' },
-  { :params => { "controller" => 'answer', "action" => 'compare', "complete" => true }, :title => 'Cost / Impact' },
+  { :params => { "controller" => 'answer', "action" => 'index', "complete" => true  }, :title => 'Sorting' },
+  { :params => { "controller" => 'answer', "action" => ['compare', 'intent'], "complete" => true }, :title => 'Cost / Impact' },
   { :params => { "controller" => 'challenge', "action" => 'matrix', "complete" => true }, :title => 'Matrix' },
   { :params => { "controller" => 'challenge', "action" => 'report', "quick" => true, "complete" => true  }, :title => 'Report' }
 ]
 %>
 
-<ul>
+<% active_point = navigation.length-1 %>
+
+<div class="container">
+<div class="row bs-wizard" style="border-bottom:0;">
   <% navigation.each do |nav| %>
-      <% if (@challenge and nav[:params].has_key?(@challenge.mode)) or nav[:params].has_key?("initial")  %>
-        <li>
-          <% if nav[:params]["action"] == controller.action_name %>
-            <span style="color:red"><%= nav[:title] %></span>
+      <% if (@challenge and nav[:params].has_key?(@challenge.mode)) %>
+          <% if nav[:params]["action"] == controller.action_name && nav[:title] != 'Cost / Impact' %>
+            <div class="col-xs-3 bs-wizard-step active">
+            <div class="text-center bs-wizard-stepnum">
+            <%= nav[:title] + "" %>
+            <% active_point = navigation.index(nav) %>
+          <% elsif nav[:params]["action"].kind_of?(Array) %>
+            <% if nav[:params]["action"][0] == controller.action_name or nav[:params]["action"][1] == controller.action_name %>
+            <div class="col-xs-3 bs-wizard-step active">
+              <div class="text-center bs-wizard-stepnum">
+              <%= nav[:title] + "" %>
+              <% active_point = navigation.index(nav) %>
+            <% else %>
+            <% if active_point < navigation.index(nav)  %>
+              <div class="col-xs-3 bs-wizard-step disabled">
+              <div class="text-center bs-wizard-stepnum">
+              <%= nav[:title] %>
+            <% else %>
+              <div class="col-xs-3 bs-wizard-step complete">
+              <div class="text-center bs-wizard-stepnum">
+              <%= nav[:title] %>
+            <% end %>
+            <% end %>
           <% else %>
+          <% if active_point < navigation.index(nav) %>
+            <div class="col-xs-3 bs-wizard-step disabled">
+            <div class="text-center bs-wizard-stepnum">
+            <%= nav[:title] %>
+          <% else %>
+            <div class="col-xs-3 bs-wizard-step complete">
+            <div class="text-center bs-wizard-stepnum">
             <%= nav[:title] %>
           <% end %>
-        </li>
+          <% end %>
+        </div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="#" class="bs-wizard-dot"></a>
+      </div>
       <% end %>
   <% end %>
-</ul>
+  </div>
+</div>

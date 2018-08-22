@@ -1,6 +1,7 @@
-<h1>Matrix</h1>
+<h1 class="text-center">Matrix</h1>
 <hr>
 <chart :source="<%= @answers.to_json %>"></chart>
+<hr>
 <div class="text-right">
   <%= link_to ">>>", challenge_report_path(@challenge), :class => "btn btn-primary" %>
 </div>

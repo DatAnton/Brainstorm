@@ -1,27 +1,36 @@
-<h1>Compare</h1>
+<h1 class="text-center">Compare</h1>
+<hr>
 
-<strong><%= @property %></strong>
+<h4 class="text-center">
+  <% if @property == 'impact' %>
+    <%= 'most impactful ' %>
+  <% elsif @property == 'cost' %>
+    <%= 'less costly ' %>
+  <% end %>
+</h4>
 
 <table class="table table-bordered">
   <tbody>
     <tr>
       <td class="text-center">
-        <span><%= @left.text %></span>
         <br>
         <%= form_tag(challenge_answer_swap_path(@challenge, @left, @right), method: 'post') do %>
           <%= hidden_field_tag(:selected, @left.id) %>
           <%= hidden_field_tag(:property, @property) %>
-          <button type="submit" class ="btn btn-primary" name="button">Select</button>
+          <button type="submit" class ="btn btn-link" name="button">
+            <%= @left.text %>
+          </button>
         <% end %>
-        
+
       </td>
       <td class="text-center">
-        <span><%= @right.text %></span>
         <br>
         <%= form_tag(challenge_answer_swap_path(@challenge, @left, @right, :property => @property), method: 'post') do %>
           <%= hidden_field_tag(:selected, @right.id) %>
           <%= hidden_field_tag(:property, @property) %>
-          <button type="submit" class ="btn btn-primary" name="button">Select</button>
+          <button type="submit" class ="btn btn-link" name="button">
+            <%= @right.text %>
+          </button>
         <% end %>
       </td>
     </tr>

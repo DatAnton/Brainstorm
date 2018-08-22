@@ -1,8 +1,21 @@
-<h1>Intent!</h1>
-<p>
-  property: <strong><%= @property %></strong>
-</p>
-<p>Link: <%= @url %></p>
+<h1 class="text-center">Cost / Impact</h1>
+<hr>
+<h2 class="text-left"><ins>
+  Select the
+  <% if @property == 'impact' %>
+    <%= 'most impactful ' %>
+  <% elsif @property == 'cost' %>
+    <%= 'less costly ' %>
+  <% end %>
+  idea fo the 2 proposals
+</ins></h2>
+<br><br>
+<h3 class="text-center">
+  Your challenge was:<br>
+  <span style="color:blue"><%= @challenge.problem %></span>
+</h3>
+<p>&nbsp;</p>
+<hr>
 <div class="text-right">
   <p><%= link_to ">>>", @url, :class => "btn btn-primary"%></p>
 </div>

@@ -1,13 +1,21 @@
-<h1>Report!</h1>
+<h1 class="text-center">Send yourself a message</h1>
 <hr>
-<p>
-  <%= link_to "New Idea?", root_path, :class => "btn btn-primary"%>
-</p>
 <%= form_tag(challenge_report_path(@challenge), method: 'post') do %>
-  <%= email_field(:email, '', { :placeholder => 'Your email...' }) %>
-  <%= text_field(:subject, '', { :placeholder => 'Email subject...' }) %>
-  <button type="submit" class="btn btn-primary" name="button">Send</button>
-<% end %>
+  <div class="row">
+    <div class="col">
+      <%= email_field(:email, '', { :placeholder => 'Your email...', :class => 'form-control' }) %>
+    </div>
+    <div class="col">
+      <%= text_field(:subject, '', { :placeholder => 'Email subject...', :class => 'form-control'}) %>
+    </div>
+    <div class="col">
+      <button type="submit" class="form-control btn btn-primary" name="button">Send email</button>
+    </div>
+    <% end %>
+</div>
+<div>
+</div>
+<hr>
 
 <h2>Challenge:</h2><br>
 <p><%= @challenge.problem %></p>
@@ -26,3 +34,7 @@
   <p><%= @better.text %></p>
 </div>
 <% end %>
+<hr>
+<div class="text-center">
+  <%= link_to "New Idea?", root_path, :class => 'btn btn-outline-primary btn-idea'%>
+</div>
