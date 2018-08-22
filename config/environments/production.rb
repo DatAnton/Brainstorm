@@ -1,9 +1,23 @@
 Rails.application.configure do
   host = 'https://brainstorm-jolly.herokuapp.com/'
-  
+
   # Verifies that versions and hashed value of the package contents in the project's package.json
   config.webpacker.check_yarn_integrity = false
   # Settings specified here will take precedence over those in config/application.rb.
+
+config.report_mailer.raise_delivery_errors = true
+config.report_mailer.delivery_method = :smtp
+host = 'brainstorm-jolly.herokuapp.com'
+config.report_mailer.default_url_options = { host: host }
+ReportMailer::Base.smtp_settings = {
+   :address        => 'smtp.sendgrid.net',
+   :port           => '587',
+   :authentication => :plain,
+   :user_name      => ENV['SENDGRID_USERNAME'],
+   :password       => ENV['SENDGRID_PASSWORD'],
+   :domain         => 'heroku.com',
+   :enable_starttls_auto => true
+ }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
