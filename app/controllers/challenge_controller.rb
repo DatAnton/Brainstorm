@@ -66,7 +66,8 @@ class ChallengeController < ApplicationController
     @challenge = Challenge.find params[:challenge_id]
     @better = Answer.where(["challenge_id = ? and selected = ?", params[:challenge_id], true]).order(:impact => :desc, :cost => :asc).first
     # ReportMailer.challenge_report(params[:email], params[:subject], params[:challenge_id]).deliver_now
-    ReportMailer.challenge_report("tom.dacenko@gmail.com", "Brainstorm", @challenge.id).deliver_now
+    # ReportMailer.challenge_report("tom.dacenko@gmail.com", "Brainstorm", @challenge.id).deliver_now
+    ReportMailer.challenge_report().deliver_now
     redirect_to challenge_report_url(@challenge)
   end
 
