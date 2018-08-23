@@ -1,16 +1,1 @@
-Challenge:
-<%= @challenge.problem %>
-
-Timing: <%= pluralize((@challenge.session / 60).to_i, 'minute') %>
-Number of outputs: <%= @challenge.answers.count %>
-Outputs per minute: <%= '%.2f' % (@challenge.answers.count.to_d / ((@challenge.session / 60).to_d)).to_d %>
-
-Outputs:
-<% @challenge.answers.each do |answer| %>
-  <%= answer.text %>
-<% end %>
-
-<% if @better %>
-Best outputs in terms of impact/cost:
-<%= @better.text %>
-<% end %>
+Hello world!
