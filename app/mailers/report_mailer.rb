@@ -17,7 +17,8 @@ class ReportMailer < ApplicationMailer
     #@challenge = Challenge.find(params[:challenge_id])
     # @better = Answer.where(["challenge_id = ? and selected = ?", id, true]).order(:impact => :desc, :cost => :asc).first
 
-    mail(to: "tom.dacenko@gmail.com", subject: "Brainstorm")
+    mail( :to => "tom.dacenko@gmail.com",
+    :subject => 'It is brainstorm!' )
     puts "<<<<<<<<<<<<<<<< Sended >>>>>>>>>>>>>>>>>>>>"
   end
 

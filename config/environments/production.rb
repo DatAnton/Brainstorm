@@ -20,15 +20,15 @@ Rails.application.configure do
 # config.action_mailer.raise_delivery_errors = true
 # config.action_mailer.delivery_method = :smtp
 # config.action_mailer.default_url_options = { host: host }
-ActionMailer::Base.smtp_settings = {
-   :address        => 'gmail.com',
-   :port           => '587',
-   :authentication => :plain,
-   :user_name      => ENV['brainstormapp0@gmail.com'],
-   :password       => ENV['brainSTORM'],
-   :domain         => 'smtp.gmail.com',
-   :enable_starttls_auto => true
- }
+# ActionMailer::Base.smtp_settings = {
+#    :address        => 'gmail.com',
+#    :port           => '587',
+#    :authentication => :plain,
+#    :user_name      => ENV['brainstormapp0@gmail.com'],
+#    :password       => ENV['brainSTORM'],
+#    :domain         => 'smtp.gmail.com',
+#    :enable_starttls_auto => true
+#  }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
