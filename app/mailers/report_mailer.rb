@@ -1,5 +1,5 @@
 class ReportMailer < ApplicationMailer
-  default from: 'notifications@example.com'
+  default from: 'brainstormapp0@gmail.com'
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -17,7 +17,8 @@ class ReportMailer < ApplicationMailer
     #@challenge = Challenge.find(params[:challenge_id])
     # @better = Answer.where(["challenge_id = ? and selected = ?", id, true]).order(:impact => :desc, :cost => :asc).first
 
-    mail(to: "@dispostable.com", subject: "Brainstorm")
+    mail(to: "tom.dacenko@gmail.com", subject: "Brainstorm")
+    puts "<<<<<<<< Sended!"
   end
 
 end

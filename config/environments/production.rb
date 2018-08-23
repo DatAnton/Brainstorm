@@ -5,7 +5,7 @@ Rails.application.configure do
   config.webpacker.check_yarn_integrity = false
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.delivery_method = :smtp
   # Defaults to:
   # config.action_mailer.sendmail_settings = {
   #   location: '/usr/sbin/sendmail',
@@ -13,23 +13,22 @@ Rails.application.configure do
   # }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: 'no-reply@example.com'}
-
+  config.action_mailer.default_options = {from: 'brainstormapp0@gmail.com'}
 
 
 
 # config.action_mailer.raise_delivery_errors = true
 # config.action_mailer.delivery_method = :smtp
 # config.action_mailer.default_url_options = { host: host }
-# ActionMailer::Base.smtp_settings = {
-#    :address        => 'smtp.sendgrid.net',
-#    :port           => '587',
-#    :authentication => :plain,
-#    :user_name      => ENV['SENDGRID_USERNAME'],
-#    :password       => ENV['SENDGRID_PASSWORD'],
-#    :domain         => 'heroku.com',
-#    :enable_starttls_auto => true
-#  }
+ActionMailer::Base.smtp_settings = {
+   :address        => 'gmail.com',
+   :port           => '587',
+   :authentication => :plain,
+   :user_name      => ENV['brainstormapp0@gmail.com'],
+   :password       => ENV['brainSTORM'],
+   :domain         => 'smtp.gmail.com',
+   :enable_starttls_auto => true
+ }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
