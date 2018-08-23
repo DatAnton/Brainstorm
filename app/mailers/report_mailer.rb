@@ -16,7 +16,7 @@ class ReportMailer < ApplicationMailer
   def challenge_report(email, subj, ch_id)
     @challenge = Challenge.find(ch_id)
     @better = Answer.where(["challenge_id = ? and selected = ?", ch_id, true]).order(:impact => :desc, :cost => :asc).first
-    mail(:to => @em, :subject => subj )
+    mail(:to => email, :subject => subj )
   end
 
 end
