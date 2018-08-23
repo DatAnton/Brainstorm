@@ -1,4 +1,5 @@
-address: mail.gmail.com
-domain: gmail.com
-user_name: "brainstormapp0@gmail.com"
-password: "brainSTORM"
+production:
+  address: mail.gmail.com
+  domain: gmail.com
+  user_name: "brainstormapp0@gmail.com"
+  password: "brainSTORM"
