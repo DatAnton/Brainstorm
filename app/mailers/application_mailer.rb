@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'brainstorm@app.com'
+  default from: 'brainstormapp0@gmail.com'
   layout 'mailer'
 end

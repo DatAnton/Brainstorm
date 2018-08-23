@@ -1,5 +1,5 @@
 class ReportMailer < ApplicationMailer
-  default from: 'brainstorm@app.com'
+  default from: 'brainstormapp@gmail.com'
 
   def challenge_report(email, subj, ch_id)
     @challenge = Challenge.find(ch_id)
