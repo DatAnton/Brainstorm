@@ -1,7 +1,7 @@
 <%
 
 navigation = [
-  { :params => { "controller" => 'challenge', "action" => 'new', "initial" => true, "quick" => true,  "complete" => true }, :title => 'Intro' },
+  { :params => { "controller" => 'challenge', "action" => ['new', 'create'], "initial" => true, "quick" => true,  "complete" => true }, :title => 'Intro' },
   { :params => { "controller" => 'challenge', "action" => 'show', "quick" => true, "complete" => true }, :title => 'Challenge' },
   { :params => { "controller" => 'challenge', "action" => 'result', "quick" => true, "complete" => true  }, :title => 'Results' },
   { :params => { "controller" => 'answer', "action" => 'index', "complete" => true  }, :title => 'Sorting' },
@@ -12,12 +12,11 @@ navigation = [
 %>
 
 <% active_point = navigation.length-1 %>
-<% puts "NEW!!!!" %>
 <div class="container">
 <div class="row bs-wizard" style="border-bottom:0;">
   <% navigation.each do |nav| %>
       <% if (@challenge and nav[:params].has_key?(@challenge.mode)) %>
-          <% if nav[:params]["action"] == controller.action_name && nav[:title] != 'Cost / Impact' %>
+          <% if nav[:params]["action"] == controller.action_name or nav[:params]["action"][0] == controller.action_name or nav[:params]["action"][1] == controller.action_name && nav[:title] != 'Cost / Impact' %>
             <div class="col-xs-3 bs-wizard-step active">
             <div class="text-center bs-wizard-stepnum">
             <%= nav[:title] %>
