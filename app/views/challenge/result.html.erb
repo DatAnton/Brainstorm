@@ -1,7 +1,11 @@
 <h1 class="text-center" style="font-size:50px">Results</h1>
 <hr>
 <p class="text-center" style="font-size:40px">Congratulations! You found <span class="text-primary"><%= pluralize(@answers.count, 'output') %></span> to the challenge in <%= pluralize(@challenge.total_time.to_i / 60, 'minute') %>.</p>
-<p class="text-center" style="font-size:35px">That's <span class="p-3 mb-2 bg-primary text-white"><%= pluralize(('%.2f' % (@answers.count.to_d / (@challenge.total_time.to_d / 60)).to_d), 'output') %></span> every minute.</p>
+<p class="text-center" style="font-size:35px">That's <span class="p-3 mb-2 bg-primary text-white">
+  <% if ('%.2f' % (@answers.count.to_d / (@challenge.total_time.to_d / 60)).to_d) %>
+    <%= pluralize(('%.2f' % (@answers.count.to_d / (@challenge.total_time.to_d / 60)).to_d), 'output') %>
+  <% end %>
+</span> every minute.</p>
 <br>
 <hr>
 <br>

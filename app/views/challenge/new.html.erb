@@ -17,7 +17,7 @@
           <div class="list-input">
             <h2>2. Choose the length of your brainstorming</h2>
             <div class="form-group">
-              <%=  f.range_field :time, { :value => 0, :min => 0, :max => 600, :step => 60, :list => 'tickmarks', :class => "form-control" } %>
+              <%= f.range_field :time, { :value => 0, :min => 0, :max => 600, :step => 60, :list => 'tickmarks', :class => "form-control" } %>
               <datalist id="tickmarks">
                 <% (0..600).step(60) do |minute| %>
                   <option value="<%= minute %>" label="<%= minute / 60 %>"><%= minute / 60 %> min.</option>

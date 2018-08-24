@@ -26,7 +26,11 @@ class ChallengeController < ApplicationController
 
   def result
     @challenge = Challenge.find_by id: params[:challenge_id]
-    @answers = @challenge.answers
+    if @challenge.total_time != 0
+      @answers = @challenge.answers
+    else
+      redirect_to new_challenge_path(:mode => @challenge.mode)
+    end
   end
 
   def report
